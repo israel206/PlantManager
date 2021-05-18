@@ -20,9 +20,9 @@ export default function Welcome() {
         Nós cuidamos de lembrar você sempre que precisar.
       </Text>
 
-      <TouchableOpacity style={styles.button}>
-        <Text>
-          >
+      <TouchableOpacity style={styles.button} activeOpacity={0.8}>
+        <Text style={styles.buttonText}>
+          '>'
         </Text>
       </TouchableOpacity>
 
@@ -61,5 +61,9 @@ const styles = StyleSheet.create({
   image: {
     width: 292,
     height:284
+  },
+  buttonText: {
+    color: colors.white,
+    fontSize: 24
   }
 });
