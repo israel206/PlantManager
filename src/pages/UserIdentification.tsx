@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { SafeAreaView, StyleSheet, Text, TextInput, View, KeyboardAvoidingView, Platform } from 'react-native';
+
 import { Button } from '../components/Button';
 
 import colors from '../styles/colors';
