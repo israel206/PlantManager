@@ -1,7 +1,11 @@
 import React from 'react';
+
 import { SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button } from '../components/Button';
+
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
+
 
 export function UserIdentification() {
   return (
@@ -10,7 +14,7 @@ export function UserIdentification() {
         <View style={styles.form}>
 
           <Text style={styles.emoji}>
-            🙂🙂
+            🙂😃😁
           </Text>
 
           <Text style={styles.title}>
@@ -21,6 +25,9 @@ export function UserIdentification() {
           <TextInput style={styles.input} />
 
         </View>
+
+        <Button />
+        
       </View>
 
     </SafeAreaView>
