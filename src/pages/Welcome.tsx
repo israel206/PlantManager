@@ -9,11 +9,11 @@ export default function Welcome() {
   // criando um vetor com duas posições
   // 'visible' o elemento
   // 'setVisible' a função
-  const { visible, setVisible } = useState(false);
+  const {visible, setVisible} = useState(false);
 
   // criando função
-  function handlerVisibility() {
-    
+  function handleVisibility() {
+    // setVisible(true)
   }
   return (
     <SafeAreaView style={styles.container}>
@@ -22,17 +22,18 @@ export default function Welcome() {
         suas plantas {'\n'}
         de forma fácil
       </Text>
-
-      <Image source={wateringImg} style={ styles.image}/>
+      
+        <Image source={wateringImg} style={ styles.image}/>
+      
+      
 
       <Text style={styles.subtitle}>
         Não esqueça mais de regar suas plantas.
         Nós cuidamos de lembrar você sempre que precisar.
       </Text>
 
-      <Button title="Mostrar imagem" onPress={ handlerVisibility } />
-      <Button title="Ocultar imagem" onPress={ handlerVisibility } />
-
+      <Button title=">" />
+      
     </SafeAreaView>
   );
 }
@@ -56,21 +57,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     color: colors.heading
   },
-  button: {
-    backgroundColor: colors.green,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 16,
-    marginBottom: 10,
-    height: 56,
-    paddingHorizontal: 10
-  },
   image: {
     width: 292,
     height:284
-  },
-  buttonText: {
-    color: colors.white,
-    fontSize: 24
   }
 });
