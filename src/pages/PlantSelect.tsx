@@ -84,7 +84,6 @@ export function PlantSelect() {
           renderItem={({item}) => (
             <PlantCardPrimary data={item} />
           )} showsVerticalScrollIndicator={false} numColumns={2} />
-
       </View>
 
     </View>
