@@ -25,10 +25,10 @@ export function Confirmation() {
           plantinhas com muito cuidado.
         </Text>
 
+        <View style={styles.footer}>
+        <Button />
       </View>
 
-      <View style={styles.footer}>
-        <Button />
       </View>
 
     </SafeAreaView>
@@ -61,14 +61,14 @@ const styles = StyleSheet.create({
     fontFamily: fonts.text,
     textAlign: 'center',
     color: colors.heading,
-    paddingVertical: 20
-
+    paddingVertical: 10
   },
   emoji: {
-    fontSize: 32
+    fontSize: 72
   },
   footer: {
     width: '100%',
-    paddingHorizontal: 75
+    paddingHorizontal: 50,
+    marginTop: 20
   }
 })
