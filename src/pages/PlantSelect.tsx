@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { EnvironmentButton } from '../components/EnvironmentButton';
 
 import { Header } from '../components/Header';
 
@@ -22,6 +23,17 @@ export function PlantSelect() {
             você quer colocar sua planta?
         </Text>
       </View>
+
+      <View>
+        <FlatList
+          // vetor data
+          data={[1, 2, 3, 4, 5]}
+          // função anônimar
+          renderItem={({item}) => (
+            <EnvironmentButton title="Cozinha" active />
+          )} horizontal />
+      </View>
+     
 
     </View>
   )
