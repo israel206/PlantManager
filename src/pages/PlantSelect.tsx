@@ -5,6 +5,8 @@ import { EnvironmentButton } from '../components/EnvironmentButton';
 
 import { Header } from '../components/Header';
 import { PlantCardPrimary } from '../components/PlantCardPrimary';
+import { Load } from '../components/Load';
+
 import api from '../services/api';
 
 import colors from '../styles/colors';
@@ -31,10 +33,30 @@ export function PlantSelect() {
 
   const [environments, setEnvironments] = useState<EnvironmentProps[]>([]);
   const [plants, setPlants] = useState<PlantProps[]>([]);
+  const [filteredPlants, setFilteredPlants] = useState<PlantProps[]>([]);
+  const [environmentsSelect, setEnvironmentsSelect] = useState('all');
+  const [loading, setLoading] = useState(true);
 
+  const [page, setPage] = useState(1);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [loadingAll, setLoadingAll] = useState(false);
+
+  function handleEnvironmentSelected(environment: string) {
+    setEnvironmentsSelect(environment);
+
+    if (environment == 'all')
+      return setFilteredPlants(plants);
+    
+    const filtered = plants.filter(plant =>
+      plant.environments.includes(environment)
+    );
+    setFilteredPlants(filtered);
+  }
+
+  // lista de locais
   useEffect(() => {
     async function fetchEnvironment() {
-      const { data } = await api.get('plants_environments');
+      const { data } = await api.get('plants_environments?_sort=title&_order=asc');
       setEnvironments([
         {
         key: 'all',
@@ -46,13 +68,20 @@ export function PlantSelect() {
     fetchEnvironment();
   }, [])
   
+  // lista de Plantas
   useEffect(() => {
     async function fetchPlants() {
-      const { data } = await api.get('plants');
+      const { data } = await api.get('plants?_sort=name&_order=asc');
       setPlants(data);
+      setFilteredPlants(data);
+      setLoading(false)
     }
     fetchPlants();
   },[])
+
+  //Carregamento do LOADING
+  if (loading)
+    return <Load />
 
   return (
     <View style={styles.container}>
@@ -74,14 +103,12 @@ export function PlantSelect() {
           data={environments}
           // função anônimar
           renderItem={({item}) => (
-            <EnvironmentButton title={item.title} />
+            <EnvironmentButton title={item.title} active={item.key === environmentsSelect} onPress={() => handleEnvironmentSelected(item.key)} />
           )} horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.environmentList} />
       </View>
      
       <View style={styles.plants}>
-        <FlatList
-          data={plants}
-          renderItem={({item}) => (
+        <FlatList data={filteredPlants} renderItem={({item}) => (
             <PlantCardPrimary data={item} />
           )} showsVerticalScrollIndicator={false} numColumns={2} />
       </View>
