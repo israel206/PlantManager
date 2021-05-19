@@ -1,8 +1,9 @@
 
 import React, { useState } from 'react';
 
-import { SafeAreaView, StyleSheet, Text, TextInput, View, KeyboardAvoidingView, TouchableWithoutFeedback, Platform, Keyboard } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, TextInput, View, KeyboardAvoidingView, TouchableWithoutFeedback, Platform, Keyboard, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Button } from '../components/Button';
 
@@ -34,6 +35,12 @@ export function UserIdentification() {
   }
   //'função', chamando a próxima tela
   function handleSubmit() {
+    //validação de nome
+    if (!name)
+      return Alert.alert('Me diz como chamar você 🤔😅');
+    
+    await AsyncStorage.getItem('@plantmanager:user', name);
+
     navigation.navigate('Confirmation');
   }
 
