@@ -1,15 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { EnvironmentButton } from '../components/EnvironmentButton';
 
 import { Header } from '../components/Header';
+import api from '../services/api';
 
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
+interface EnvironmentProps{
+  key: string;
+  title: string;
+}
 
 export function PlantSelect() {
+
+  const [environments, setEnvironments] = useState<EnvironmentProps[]>([]);
+
+  useEffect(() => {
+    async function fetchEnvironment() {
+      const { data } = await api.get('plants_environments');
+      setEnvironments([
+        {
+        key: 'all',
+        title: 'todos',
+        },
+        ...data
+      ]);
+    }
+    fetchEnvironment();
+  },[])
+
   return (
     <View style={styles.container}>
 
@@ -27,11 +49,11 @@ export function PlantSelect() {
       <View>
         <FlatList
           // vetor data
-          data={[1, 2, 3, 4, 5]}
+          data={environments}
           // função anônimar
           renderItem={({item}) => (
-            <EnvironmentButton title="Cozinha" active />
-          )} horizontal />
+            <EnvironmentButton title={item.title} />
+          )} horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.environmentList} />
       </View>
      
 
@@ -59,5 +81,12 @@ const styles = StyleSheet.create({
     fontFamily: fonts.text,
     color: colors.heading,
     lineHeight: 20,
+  },
+  environmentList: {
+    height: 40,
+    justifyContent: 'center',
+    paddingBottom: 5,
+    marginLeft: 32,
+    marginVertical: 32
   }
 });
