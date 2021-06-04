@@ -48,6 +48,7 @@ Follow the steps below
 ```bash
 # directory
 cd plantmanager
+
 # Install the dependencies
 $ yarn install
 
@@ -69,4 +70,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE.md) fi
 
 ---
 
-Made with 💜 [by Israel Silva](https://israel206.github.io/) 👋
+Made with 💜 [by Israel Silva](https://israel206.github.io/) 👋 com os direitos reservado da Rocketseat
